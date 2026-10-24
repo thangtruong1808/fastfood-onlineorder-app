@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Southern Cross Burgers",
+    "slug": "southern-cross-burgers-melbourne",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "scburgers",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#1F1714"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "au.com.southerncrossburgers.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#D9381E"
+      },
+      "package": "au.com.southerncrossburgers.mobile"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.au.com.southerncrossburgers.test",
+          "enableGooglePay": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
+
