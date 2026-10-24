@@ -1,0 +1,80 @@
+You are a senior frontend engineer and a product designer with strong UI/UX and data-visualization skills.
+
+## Context
+I already created a base project with the latest Vite + React in this repo. This is a FRONTEND-ONLY showcase project that I will present to customers to demonstrate my UX, UI, design and data-visualization skills. All data is mock/simulated. Design quality is the top priority: it must look modern, polished, and "production-grade".
+
+The concept: an online fast-food restaurant ordering app inspired by the experience of a big fast-food chain in Melbourne, Australia. Use a FICTIONAL brand (invent a name and logo) with original menu item names, original copy, and royalty-free/original imagery. Do NOT use any real brand's trademarks, logos, or menu item names.
+
+Deployment target: Vercel (free Hobby plan). The project stays on Vite + React. Do NOT migrate to Next.js.
+
+## Working agreement (important)
+- This is a large project. Work in PHASES, one phase per build run.
+- Step 1 is planning only: do not write feature code until I approve the plan.
+- After I approve, implement ONLY the first phase, then STOP. Summarize what was built, how to run and test it, what to check manually, and what the next phase will be. Wait for my review and explicit go-ahead before starting the next phase.
+- Never start the next phase on your own, and never leave a phase half-finished: each phase must end in a working, runnable state (app builds, lint passes, no console errors).
+
+## Step 1: Inspect, then plan (do not code yet)
+1. Inspect the existing project first (JS or TS, folder layout, lint/format config, package versions) and keep its conventions. If it is TypeScript, keep TypeScript.
+2. Propose a phased plan and write it to PHASE.md (follow the format of any existing PHASE.md/plan files if present): phases, tasks, acceptance criteria, risks, and open questions. Each phase must be independently reviewable and end in a working state.
+3. Wait for my approval before implementing.
+
+## Step 2: Dependencies (use latest STABLE versions only)
+- Verify the latest stable versions with `npm view <pkg> version` and confirm compatibility with the existing React and Vite versions. No beta/rc/canary.
+- Install and configure: Tailwind CSS (use the setup officially recommended for the current stable major version with Vite), Redux Toolkit + React-Redux (with RTK Query for the mock API layer), React Router (current stable major, using the data router / recommended API).
+- Also install what is needed for the quality bar: a motion library for animations, a charting library (e.g., Recharts) for dashboards, an icon set (e.g., lucide-react), a headless accessible UI primitives library (e.g., Radix UI) for dialogs/drawers/tooltips, `@stripe/stripe-js` and `@stripe/react-stripe-js`, and a toast library. Justify each choice briefly in the plan; do not add unnecessary packages.
+- Deployment target is Vercel: add a vercel.json with SPA rewrites so React Router deep links (e.g., refreshing /checkout) work, while keeping /api routes working.
+
+## Step 3: Project structure (modern, clear, maintainable)
+Use a feature-based structure, for example:
+src/
+  app/ (store, router, providers, layouts)
+  features/ (menu, cart, checkout, orders, tracking, dashboard, auth-mock, loyalty, stores)
+  components/ (shared UI primitives: Button, Card, Modal, Drawer, Skeleton, Badge, etc.)
+  hooks/, lib/, services/ (mockApi, paymentService), data/ (mock JSON/seeds), types/, assets/, styles/
+api/ (Vercel serverless functions)
+Each feature owns its slice, API, components, and tests. Use path aliases, consistent naming, barrel exports where sensible, and a short README explaining the architecture and how to run it.
+
+## Step 4: Product features
+Customer experience:
+- Home: hero, featured items, deals/promotions, category shortcuts, store/pickup-or-delivery selector (Melbourne suburbs, fictional stores).
+- Menu: categories (burgers, chicken, wraps, sides, drinks, desserts, breakfast, kids meals, combos), search, filters (dietary tags: vegetarian, spicy, etc.), sort, dietary/allergen info, favorites.
+- Item detail modal/page: size options, add-ons/customizations, combo upgrade, quantity, live price update.
+- Cart: slide-over drawer with edit/remove, promo code (mock), order summary with AUD pricing and GST (10%) shown properly, upsell suggestions.
+- Checkout: pickup or delivery, time slot, contact details, validation, order summary.
+- Payment: see Step 5.
+- Order tracking: simulated live status timeline (Received → Preparing → Ready/Out for delivery → Completed) with animated progress and estimated time.
+- Customer dashboard: order history, reorder in one click, favorites, loyalty points/tier progress, saved addresses (mock).
+Admin/analytics dashboard (mock data, strong visualization):
+- KPI cards (revenue, orders, average order value, conversion), sales over time (line/area), orders by hour (heatmap or bar), top-selling items, category share (donut), pickup vs delivery split, live orders table with status updates, date range filter.
+Mock auth: simple mock login to switch between "customer" and "admin" demo roles (one-click demo accounts on the login page).
+
+## Step 5: Stripe (test mode) with a safe architecture
+- Create a `paymentService` abstraction with two adapters, switched by an env flag:
+  1) Mock adapter (DEFAULT): fully offline, UI that looks like a modern card payment form, accepts Stripe test cards (e.g., 4242 4242 4242 4242), and simulates success, decline, and 3D Secure outcomes. The demo must keep working even if Stripe or the serverless function is unavailable.
+  2) Stripe test-mode adapter: uses Stripe.js with the Payment Element and a publishable TEST key from env vars. Create the PaymentIntent in a minimal Vercel serverless function at /api/create-payment-intent (Node runtime), reading STRIPE_SECRET_KEY from Vercel environment variables. NEVER put a secret key in the frontend or the repo. Validate the amount on the server, return only the client secret, and document how to run it locally with `vercel dev`.
+- Include `.env.example`. Clearly label the UI as "Test mode" and show a small hint with test card numbers for demo purposes.
+- Handle loading, success, failure, and retry states gracefully with a clear confirmation page and receipt.
+
+## Step 6: Mock data and API layer
+- Realistic seed data (menu, categories, stores, orders, analytics) in a `data/` folder.
+- A mock API with artificial latency and occasional simulated errors (toggleable) via RTK Query, so loading, empty, and error states are all demonstrable. Persist cart, theme, favorites, and orders in localStorage.
+
+## Step 7: Design, UI, UX (highest priority)
+- Define a design system first: color tokens, typography scale, spacing, radius, shadows, motion rules, and component states. Warm, appetizing brand palette with excellent contrast; modern layout with generous whitespace; consistent iconography.
+- Light/Dark theme toggle with system preference detection, persistence, and no flash on load. Both themes must be fully designed, including charts and images.
+- Micro-interactions and tasteful animations (add-to-cart feedback, drawer transitions, page transitions, animated numbers/charts), respecting `prefers-reduced-motion`.
+- Skeleton loaders, empty states, error states, and success states everywhere. Friendly, short, professional copy.
+- Fully responsive (mobile-first, with a mobile bottom navigation and a sticky cart bar), accessible (WCAG AA contrast, keyboard navigation, focus states, ARIA labels), and fast (code splitting by route, lazy-loaded images, good Lighthouse scores).
+- Imagery: use original or royalty-free images with a consistent style; provide graceful placeholders.
+
+## Step 8: Quality
+- ESLint + Prettier config consistent with the repo, strict typing if TS, meaningful commit-ready structure.
+- A few unit tests for core logic (cart totals, GST, promo code) and one end-to-end happy-path test plan (menu → cart → checkout → payment → tracking).
+- Final README with screenshots section placeholders, demo accounts, test cards, env variables, and how to deploy to Vercel.
+
+## Expected output (for the planning step)
+1. Summary of the existing project state.
+2. Proposed dependency list with versions verified as stable and the reason for each.
+3. Proposed folder structure.
+4. Phased plan written to PHASE.md with acceptance criteria per phase (each phase independently reviewable and ending in a working state).
+5. Your recommendations to improve the concept further, and open questions I need to confirm before you start building.
