@@ -10,6 +10,7 @@ import {
   ShoppingBag,
   Sparkles,
   Store as StoreIcon,
+  Tablet,
   User,
   UtensilsCrossed,
 } from 'lucide-react';
@@ -33,6 +34,7 @@ import { FULFILLMENT_MODES } from '@/types';
 const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Home, end: true },
   { to: '/menu', label: 'Menu', icon: UtensilsCrossed, end: false },
+  { to: '/pos', label: 'iPad POS', icon: Tablet, end: false },
   { to: '/account', label: 'My Orders & Rewards', icon: Sparkles, end: false },
   { to: '/admin', label: 'Analytics', icon: BarChart3, end: false },
 ];
@@ -84,7 +86,14 @@ export function RootLayout() {
               Promo Code: <strong className="text-white">MELB15</strong> (15% Off A$25+)
             </span>
             <span className="text-amber-200/60">|</span>
-            <span>All prices in AUD ($) incl. 10% GST</span>
+            <Link
+              to="/pos"
+              className="inline-flex items-center gap-1 rounded-md bg-amber-500/20 px-2 py-0.5 font-bold text-amber-300 hover:bg-amber-500/35 hover:text-white transition-colors"
+            >
+              <Tablet className="h-3 w-3" />
+              <span>iPad POS Terminal</span>
+              <span>→</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -96,7 +105,7 @@ export function RootLayout() {
           <div className="flex items-center gap-4">
             <Link
               to="/"
-              className="rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+              className="shrink-0 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
             >
               <BrandLogo />
             </Link>

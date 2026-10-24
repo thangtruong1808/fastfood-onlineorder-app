@@ -60,5 +60,12 @@ export function createAppRouter() {
         },
       ],
     },
+    {
+      path: '/pos',
+      lazy: async () => {
+        const mod = await import('@/features/pos/PosTerminalPage');
+        return { Component: mod.default };
+      },
+    },
   ]);
 }

@@ -16,6 +16,7 @@
   - **Stripe Test Mode Adapter**: Production-grade `@stripe/stripe-js` loader interfacing with a secure Vercel Node serverless function (`/api/create-payment-intent`).
 - **Live Animated Order Tracking**: 4-stage visual progress timeline (*Received → Flame Grilling → Ready / En Route → Delivered*), dynamic countdown timer, courier status, interactive demo fast-forward controls, and official printable Australian tax invoice receipt.
 - **Customer Dashboard & Flame Rewards**: Tier progression (*Bronze Star → Silver Cross → Southern Gold*), redeemable vouchers, saved delivery addresses, and **1-Click Reorder**.
+- **Point-of-Sale (POS) iPad Register Mode (`/pos`)**: Touch-first in-store register terminal optimized for iPad landscape orientation (Sidecar/external display) with 65%/35% split view, instant category ribbon, 1-tap tile adding, customizable items, live order ticket, staff discounts, fast cash change due calculator, and simulated EFTPOS reader.
 - **Admin Analytics Dashboard**: Composable Recharts visualizations (Gross Revenue & Orders AreaChart, 24h Peak Rush Hour stacked bar, Category Revenue Share donut, Top-Selling Leaderboard, and a **Live Kitchen Order Gateway** where admins can change order statuses in real time).
 - **1-Click Demo Persona Switcher**: Instant switching between **Alex Mercer (Customer — Southern Gold)**, **Sarah Chen (Store Operations Manager)**, and **First-Time Guest**.
 - **Demo API Simulator**: Floating bottom toolbar to simulate artificial network latency (0ms, 400ms, 1200ms) or force 503 gateway errors to demonstrate skeletons and error recovery.
@@ -81,7 +82,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ## 🧪 Running Tests & Quality Verification
 
 ```bash
-# Run unit & integration tests (15 test suites)
+# Run unit & integration tests (18 tests across 5 suites)
 npm test
 
 # Run ESLint across entire codebase

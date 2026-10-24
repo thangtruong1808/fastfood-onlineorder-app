@@ -1,8 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#D9381E"/>
-  <path d="M32 10L34.5 17.5L42 20L34.5 22.5L32 30L29.5 22.5L22 20L29.5 17.5L32 10Z" fill="#FBBF24"/>
-  <path d="M32 38L33.5 43L38.5 44.5L33.5 46L32 51L30.5 46L25.5 44.5L30.5 43L32 38Z" fill="#FFFBEB"/>
-  <path d="M16 26L17.5 30.5L22 32L17.5 33.5L16 38L14.5 33.5L10 32L14.5 30.5L16 26Z" fill="#FFFBEB"/>
-  <path d="M48 24L49.5 28.5L54 30L49.5 31.5L48 36L46.5 31.5L42 30L46.5 28.5L48 24Z" fill="#FFFBEB"/>
-  <circle cx="41" cy="37" r="2.5" fill="#FBBF24"/>
+  <defs>
+    <linearGradient id="fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#D9381E"/>
+      <stop offset="100%" stopColor="#991B1B"/>
+    </linearGradient>
+    <linearGradient id="fav-bun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#FEF08A"/>
+      <stop offset="100%" stopColor="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="fav-flame" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#EA580C"/>
+      <stop offset="100%" stopColor="#FDE68A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="16" fill="url(#fav-bg)"/>
+
+  <!-- Top Bun -->
+  <path d="M14 26C14 17.5 21 12 32 12C43 12 50 17.5 50 26C50 27.5 48.5 28.5 46.5 28.5H17.5C15.5 28.5 14 27.5 14 26Z" fill="url(#fav-bun)"/>
+  <ellipse cx="25" cy="18" rx="1.5" ry="0.8" transform="rotate(-20 25 18)" fill="#FFFBEB"/>
+  <ellipse cx="32" cy="16" rx="1.5" ry="0.8" fill="#FFFBEB"/>
+  <ellipse cx="39" cy="18" rx="1.5" ry="0.8" transform="rotate(20 39 18)" fill="#FFFBEB"/>
+
+  <!-- Sizzling Flame Layer -->
+  <path d="M12 32.5C15 30 18 34.5 21 32C24 29.5 27 34 30 32C33 29.5 36 34 39 32C42 29.5 45 34 48 32C50.5 30 52 32.5 52 32.5H12Z" fill="#B91C1C"/>
+  <path d="M13 33.5C16 31.5 19 35 22 33C25 31.5 28 35 31 33C34 31.5 37 35 40 33C43 31.5 46 35 49 33" stroke="url(#fav-flame)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Bottom Bun -->
+  <path d="M16 41H48C49.5 41 50.5 42.2 50 43.8C48.5 48.5 41 52 32 52C23 52 15.5 48.5 14 43.8C13.5 42.2 14.5 41 16 41Z" fill="url(#fav-bun)"/>
+
+  <!-- Stars -->
+  <path d="M32 3L33 5.5L35.5 6.5L33 7.5L32 10L31 7.5L28.5 6.5L31 5.5L32 3Z" fill="#FDE047"/>
+  <path d="M7 22L8 23.5L9.5 24.5L8 25.5L7 27L6 25.5L4.5 24.5L6 23.5L7 22Z" fill="#FFFFFF"/>
+  <path d="M57 20L58 21.5L59.5 22.5L58 23.5L57 25L56 23.5L54.5 22.5L56 21.5L57 20Z" fill="#FFFFFF"/>
+  <path d="M32 43L33 45L35 46L33 47L32 49L31 47L29 46L31 45L32 43Z" fill="#FFFFFF"/>
 </svg>
