@@ -42,6 +42,7 @@ function AppRootShell() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="checkout" options={{ headerShown: false }} />
           <Stack.Screen name="tracking/[orderId]" options={{ headerShown: false }} />
+          <Stack.Screen name="pos" options={{ headerShown: false }} />
         </Stack>
         <StoreSelectorSheet />
         <CartSheetModal />

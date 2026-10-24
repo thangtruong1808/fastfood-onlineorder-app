@@ -213,7 +213,7 @@ export default function DemoAndSettingsTabScreen() {
         <ThemeToggle />
       </Card>
 
-      {/* Active Melbourne Store & RTK Query Simulator Controls */}
+      {/* Active Melbourne Store, API Simulator & POS Terminal */}
       <Card style={{ gap: 12 }}>
         <View
           style={{
@@ -271,8 +271,38 @@ export default function DemoAndSettingsTabScreen() {
             Configure
           </Button>
         </View>
+
+        <View
+          style={{
+            height: 1,
+            backgroundColor: colors.borderSubtle,
+          }}
+        />
+
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <View style={{ flex: 1, paddingRight: 10 }}>
+            <Text style={{ color: colors.textPrimary, fontSize: 15, fontWeight: '800' }}>
+              Counter & Drive-Thru POS Terminal
+            </Text>
+            <Text style={{ color: colors.textSecondary, fontSize: 12, marginTop: 2 }}>
+              Launch the in-store cash & EFTPOS register with thermal kitchen docket printing.
+            </Text>
+          </View>
+          <Button
+            variant="primary"
+            size="sm"
+            onPress={() => router.push('/pos')}
+          >
+            Open POS
+          </Button>
+        </View>
       </Card>
     </ScrollView>
   );
 }
-
