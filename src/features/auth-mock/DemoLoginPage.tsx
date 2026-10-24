@@ -18,6 +18,8 @@ export default function DemoLoginPage() {
     toast.success(`Signed in as ${profile.name} (${role.toUpperCase()})`);
     if (role === 'admin') {
       navigate('/admin');
+    } else if (role === 'customer') {
+      navigate('/account');
     } else {
       navigate('/');
     }

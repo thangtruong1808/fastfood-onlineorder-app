@@ -5,6 +5,7 @@ import authReducer, {
   STORAGE_KEY_FAVORITES,
 } from '@/features/auth-mock/authSlice';
 import cartReducer, { STORAGE_KEY_CART } from '@/features/cart/cartSlice';
+import ordersReducer, { STORAGE_KEY_ORDERS } from '@/features/orders/ordersSlice';
 import storeReducer, { STORAGE_KEY_STORE_STATE } from '@/features/stores/storeSlice';
 import { mockApi } from '@/services/mockApi';
 
@@ -33,6 +34,7 @@ const localStoragePersistenceMiddleware: Middleware = (storeApi) => (next) => (a
         promoCode: state.cart.promoCode,
       }),
     );
+    localStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(state.orders.orders));
   } catch {
     // Ignore quota or private-browsing storage restrictions
   }
@@ -46,6 +48,7 @@ export const store = configureStore({
     store: storeReducer,
     auth: authReducer,
     cart: cartReducer,
+    orders: ordersReducer,
     [mockApi.reducerPath]: mockApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
