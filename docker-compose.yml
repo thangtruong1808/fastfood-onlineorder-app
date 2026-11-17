@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        VITE_PAYMENT_ADAPTER: ${VITE_PAYMENT_ADAPTER:-mock}
+        VITE_STRIPE_PUBLISHABLE_KEY: ${VITE_STRIPE_PUBLISHABLE_KEY:-}
+    ports:
+      - "${APP_PORT:-8080}:80"
+    restart: unless-stopped
