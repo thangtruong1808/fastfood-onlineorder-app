@@ -20,6 +20,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { MeetTheDeveloper } from '@/components/common/MeetTheDeveloper';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -425,6 +426,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <MeetTheDeveloper />
 
       {/* Item Customization Modal */}
       <ItemDetailModal
